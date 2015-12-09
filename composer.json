@@ -1,0 +1,46 @@
+{
+    "name": "rojtjo/lumen-glide",
+    "description": "Easily integrate Glide with the Lumen micro-framework",
+    "keywords": [
+        "rojtjo",
+        "lumen-glide"
+    ],
+    "homepage": "https://github.com/rojtjo/lumen-glide",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roj Vroemen",
+            "email": "me@rojvroemen.com",
+            "homepage": "http://rojvroemen.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : ">=5.3.0",
+        "illuminate/support": "~5.0",
+        "league/glide": "dev-master",
+        "rojtjo/glide-lumen": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "4.*",
+        "scrutinizer/ocular": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "rojtjo\\lumen-glide\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "rojtjo\\lumen-glide\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
