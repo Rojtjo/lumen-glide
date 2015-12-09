@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 use Intervention\Image\ImageManager;
 use League\Glide\Api\Api;
 use League\Glide\Server;
+use League\Glide\Signatures\Signature;
+use League\Glide\Signatures\SignatureFactory;
+use League\Glide\Urls\UrlBuilder;
 use Rojtjo\Glide\Responses\LumenResponseFactory;
 
 class GlideServiceProvider extends ServiceProvider
@@ -17,15 +20,16 @@ class GlideServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadDefaultConfig();
+        $this->loadConfig();
         $this->registerRoute();
     }
 
     /**
      * Load the default config.
      */
-    public function loadDefaultConfig()
+    public function loadConfig()
     {
+        $this->app->configure('glide');
         $defaults = require __DIR__.'/../config/glide.php';
         $config = config('glide', []);
 
@@ -119,8 +123,45 @@ class GlideServiceProvider extends ServiceProvider
             return $server;
         }, true);
 
+        $this->app->bindIf('glide.signature', function($app) {
+            $app->configure('app');
+            $key = config('app.key');
+
+            return SignatureFactory::create($key);
+        });
+
+        $this->app->bindIf('glide.image_controller', function($app) {
+            $server = $app['glide.server'];
+            $signature = $app['glide.signature'];
+            $secure = config('glide.secure', true);
+
+            return new ImageController(
+                $server,
+                $signature,
+                $secure
+            );
+        });
+
+        $this->app->bindIf('glide.url_builder', function($app) {
+            $baseUrl = $app['request']->root();
+            $secure = config('glide.secure', true);
+            $signature = null;
+
+            if($secure) {
+                $signature = $app['glide.signature'];
+            }
+
+            return new UrlBuilder(
+                $baseUrl,
+                $signature
+            );
+        });
+
         $this->app->alias('glide.image_manager', ImageManager::class);
         $this->app->alias('glide.api', Api::class);
         $this->app->alias('glide.server', Server::class);
+        $this->app->alias('glide.signature', Signature::class);
+        $this->app->alias('glide.image_controller', ImageController::class);
+        $this->app->alias('glide.url_builder', UrlBuilder::class);
     }
 }

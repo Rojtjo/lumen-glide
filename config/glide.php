@@ -11,6 +11,11 @@ return [
     'uri' => 'img',
 
     /**
+     * Configure whether the urls should have a signature.
+     */
+    'secure' => env('GLIDE_SECURE', true),
+
+    /**
      * Configure the image manipulation driver.
      */
     'driver' => env('GLIDE_DRIVER', 'gd'),
@@ -34,7 +39,7 @@ return [
     },
 
     /**
-     * Image manipulators
+     * Image manipulators.
      */
     'manipulators' => function() {
         return [

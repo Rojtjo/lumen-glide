@@ -5,6 +5,7 @@ namespace Rojtjo\LumenGlide;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 use League\Glide\Server;
+use League\Glide\Signatures\Signature;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ImageController extends Controller
@@ -15,11 +16,25 @@ class ImageController extends Controller
     private $server;
 
     /**
-     * @param Server $server
+     * @var Signature
      */
-    public function __construct(Server $server)
+    private $signature;
+
+    /**
+     * @var bool
+     */
+    private $secure;
+
+    /**
+     * @param Server $server
+     * @param Signature $signature
+     * @param bool $secure
+     */
+    public function __construct(Server $server, Signature $signature, $secure = true)
     {
         $this->server = $server;
+        $this->signature = $signature;
+        $this->secure = (bool) $secure;
     }
 
     /**
@@ -30,6 +45,10 @@ class ImageController extends Controller
     public function show(Request $request, $path)
     {
         $params = $request->query();
+
+        if ($this->secure) {
+            $this->signature->validateRequest($path, $params);
+        }
 
         return $this->server->getImageResponse($path, $params);
     }

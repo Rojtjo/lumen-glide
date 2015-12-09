@@ -21,11 +21,7 @@ $ composer require rojtjo/lumen-glide
 Configuration can be done in multiple ways.
 
 ### First method
-First copy the config file from `{package_dir}/config/glide.php` to `config/glide` and then load the config file.
-``` php
-// bootstrap/app.php
-$app->configure('glide');
-```
+Copy the config file from `{package_dir}/config/glide.php` to `config/glide` and update it with your own values. 
 
 ### Second method
 Update the container bindings.
