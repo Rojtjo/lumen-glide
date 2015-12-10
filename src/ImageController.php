@@ -34,7 +34,7 @@ class ImageController extends Controller
     {
         $this->server = $server;
         $this->signature = $signature;
-        $this->secure = (bool) $secure;
+        $this->secure = (bool)$secure;
     }
 
     /**

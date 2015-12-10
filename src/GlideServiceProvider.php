@@ -30,7 +30,7 @@ class GlideServiceProvider extends ServiceProvider
     public function loadConfig()
     {
         $this->app->configure('glide');
-        $defaults = require __DIR__.'/../config/glide.php';
+        $defaults = require __DIR__ . '/../config/glide.php';
         $config = config('glide', []);
 
         config([
@@ -45,7 +45,7 @@ class GlideServiceProvider extends ServiceProvider
     {
         $uri = config('glide.uri');
         $uri = sprintf('%s/{path:.*}', trim($uri, '/'));
-        $this->app->get($uri, ImageController::class.'@show');
+        $this->app->get($uri, ImageController::class . '@show');
     }
 
     /**
@@ -55,7 +55,7 @@ class GlideServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bindIf('glide.source', function($app) {
+        $this->app->bindIf('glide.source', function ($app) {
             $source = config('glide.source');
 
             if (is_callable($source)) {
@@ -65,7 +65,7 @@ class GlideServiceProvider extends ServiceProvider
             return $source;
         }, true);
 
-        $this->app->bindIf('glide.cache', function($app) {
+        $this->app->bindIf('glide.cache', function ($app) {
             $cache = config('glide.cache');
 
             if (is_callable($cache)) {
@@ -75,7 +75,7 @@ class GlideServiceProvider extends ServiceProvider
             return $cache;
         }, true);
 
-        $this->app->bindIf('glide.manipulators', function($app) {
+        $this->app->bindIf('glide.manipulators', function ($app) {
             $manipulators = config('glide.manipulators');
 
             if (is_callable($manipulators)) {
@@ -85,7 +85,7 @@ class GlideServiceProvider extends ServiceProvider
             return $manipulators;
         }, true);
 
-        $this->app->bindIf('glide.image_manager', function($app) {
+        $this->app->bindIf('glide.image_manager', function ($app) {
             $driver = config('glide.driver', 'gd');
 
             return new ImageManager([
@@ -93,7 +93,7 @@ class GlideServiceProvider extends ServiceProvider
             ]);
         }, true);
 
-        $this->app->bindIf('glide.api', function($app) {
+        $this->app->bindIf('glide.api', function ($app) {
             $imageManager = $app['glide.image_manager'];
             $manipulators = $app['glide.manipulators'];
 
@@ -103,7 +103,7 @@ class GlideServiceProvider extends ServiceProvider
             );
         }, true);
 
-        $this->app->bindIf('glide.server', function($app) {
+        $this->app->bindIf('glide.server', function ($app) {
             $source = $app['glide.source'];
             $cache = $app['glide.cache'];
             $api = $app['glide.api'];
@@ -123,14 +123,14 @@ class GlideServiceProvider extends ServiceProvider
             return $server;
         }, true);
 
-        $this->app->bindIf('glide.signature', function($app) {
+        $this->app->bindIf('glide.signature', function ($app) {
             $app->configure('app');
             $key = config('app.key');
 
             return SignatureFactory::create($key);
         });
 
-        $this->app->bindIf('glide.image_controller', function($app) {
+        $this->app->bindIf('glide.image_controller', function ($app) {
             $server = $app['glide.server'];
             $signature = $app['glide.signature'];
             $secure = config('glide.secure', true);
@@ -142,12 +142,12 @@ class GlideServiceProvider extends ServiceProvider
             );
         });
 
-        $this->app->bindIf('glide.url_builder', function($app) {
+        $this->app->bindIf('glide.url_builder', function ($app) {
             $baseUrl = $app['request']->root();
             $secure = config('glide.secure', true);
             $signature = null;
 
-            if($secure) {
+            if ($secure) {
                 $signature = $app['glide.signature'];
             }
 

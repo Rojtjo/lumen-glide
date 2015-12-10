@@ -23,7 +23,7 @@ return [
     /**
      * Configure the source filesystem.
      */
-    'source' => function() {
+    'source' => function () {
         return new Filesystem(new Local(
             storage_path('app/images/source')
         ));
@@ -32,7 +32,7 @@ return [
     /**
      * Configure the cache filesystem.
      */
-    'cache' => function() {
+    'cache' => function () {
         return new Filesystem(new Local(
             storage_path('app/images/cache')
         ));
@@ -41,11 +41,11 @@ return [
     /**
      * Image manipulators.
      */
-    'manipulators' => function() {
+    'manipulators' => function () {
         return [
             new Manipulators\Orientation(),
             new Manipulators\Crop(),
-            new Manipulators\Size(2000*2000),
+            new Manipulators\Size(2000 * 2000),
             new Manipulators\Brightness(),
             new Manipulators\Contrast(),
             new Manipulators\Gamma(),
