@@ -26,15 +26,22 @@ class ImageController extends Controller
     private $secure;
 
     /**
+     * @var string
+     */
+    private $prefix;
+
+    /**
      * @param Server $server
      * @param Signature $signature
      * @param bool $secure
+     * @param string $prefix
      */
-    public function __construct(Server $server, Signature $signature, $secure = true)
+    public function __construct(Server $server, Signature $signature, $secure = true, $prefix = null)
     {
         $this->server = $server;
         $this->signature = $signature;
         $this->secure = (bool)$secure;
+        $this->prefix = $prefix;
     }
 
     /**
@@ -47,9 +54,21 @@ class ImageController extends Controller
         $params = $request->query();
 
         if ($this->secure) {
-            $this->signature->validateRequest($path, $params);
+            $this->validateRequest($path, $params);
+            $this->validateRequest($path, $params);
         }
 
         return $this->server->getImageResponse($path, $params);
+    }
+
+    /**
+     * @param string $path
+     * @param array $params
+     * @throws \League\Glide\Signatures\SignatureException
+     */
+    private function validateRequest($path, $params)
+    {
+        $path = '/' . trim($this->prefix . '/' . $path, '/');
+        $this->signature->validateRequest($path, $params);
     }
 }

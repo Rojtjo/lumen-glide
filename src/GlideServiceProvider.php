@@ -134,16 +134,18 @@ class GlideServiceProvider extends ServiceProvider
             $server = $app['glide.server'];
             $signature = $app['glide.signature'];
             $secure = config('glide.secure', true);
+            $prefix = config('glide.uri');
 
             return new ImageController(
                 $server,
                 $signature,
-                $secure
+                $secure,
+                $prefix
             );
         });
 
         $this->app->bindIf('glide.url_builder', function ($app) {
-            $baseUrl = $app['request']->root();
+            $baseUrl = $app['request']->root() . '/' . config('glide.uri').'/';
             $secure = config('glide.secure', true);
             $signature = null;
 
