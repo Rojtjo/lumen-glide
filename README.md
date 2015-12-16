@@ -70,17 +70,17 @@ If you discover any security related issues, please email me@rojvroemen.com inst
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/rojtjo/lumen-glide.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/Rojtjo/lumen-glide.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/rojtjo/lumen-glide/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/rojtjo/lumen-glide.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/rojtjo/lumen-glide.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/rojtjo/lumen-glide.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/Rojtjo/lumen-glide/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/Rojtjo/lumen-glide.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/Rojtjo/lumen-glide.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/Rojtjo/lumen-glide.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/rojtjo/lumen-glide
-[link-travis]: https://travis-ci.org/rojtjo/lumen-glide
-[link-scrutinizer]: https://scrutinizer-ci.com/g/rojtjo/lumen-glide/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/rojtjo/lumen-glide
-[link-downloads]: https://packagist.org/packages/rojtjo/lumen-glide
-[link-author]: https://github.com/rojtjo
+[link-packagist]: https://packagist.org/packages/Rojtjo/lumen-glide
+[link-travis]: https://travis-ci.org/Rojtjo/lumen-glide
+[link-scrutinizer]: https://scrutinizer-ci.com/g/Rojtjo/lumen-glide/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/Rojtjo/lumen-glide
+[link-downloads]: https://packagist.org/packages/Rojtjo/lumen-glide
+[link-author]: https://github.com/Rojtjo
 [link-contributors]: ../../contributors
