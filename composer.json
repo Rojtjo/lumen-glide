@@ -27,12 +27,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Rojtjo\\LumenGlide\\": "src"
+            "Rojtjo\\LumenGlide\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Rojtjo\\LumenGlide\\Test\\": "tests"
+            "Rojtjo\\LumenGlide\\Test\\": "tests/"
         }
     },
     "scripts": {
