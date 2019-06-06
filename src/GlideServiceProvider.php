@@ -45,7 +45,7 @@ class GlideServiceProvider extends ServiceProvider
     {
         $uri = config('glide.uri');
         $uri = sprintf('%s/{path:.*}', trim($uri, '/'));
-        $this->app->get($uri, ImageController::class . '@show');
+        $this->app->router->get($uri, ImageController::class . '@show');
     }
 
     /**
